@@ -42,5 +42,5 @@ spec:
     app: mongodb
   ports:
     - protocol: TCP
-      port: 27016
-      targetPort: 27017
+      port: 27017 #this is the port that service [in fact mongo db] will be accessible through
+      targetPort: 27017 #this needs to match the container/pod port from section above

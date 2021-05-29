@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: default-http-backend
+spec:
+  selector:
+    app: default-response-app
+  ports:
+    - protocol: TCP
+      port: 80 #this is the port that k8s ingress will send unhandled requests to -- it's set to 80 by ingress
+      # you can see this via kubectl describe ingress <my-ingress-svc> -n <namespace>
+      targetPort: 8080 #this needs to match the container/pod port of default-response-app
