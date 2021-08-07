@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mongo-express-ingress
+spec:
+  rules:
+  - host: alehad-mongo-express.com #this needs to be fully qualified and ***valid*** registered domain
+                                   #ingress is used when you have a genuine domain name that you want to 
+                                   #redirect to the k8 cluster
+                                   #for minikube, using LoadBalancer [external] service is sufficient
+                                   #but it does require running 'minikube service <svc-name>' in order to
+                                   #get externally [outside of k8 cluster] accessible IP address on localhost
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/express"
+        backend:
+          service:
+            name: mongo-express-internal-service
+            port: 
+              number: 8082
